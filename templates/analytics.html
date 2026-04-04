@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics | AI Stress Intelligence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>Stress Analytics</h2>
+    <div>
+        <a href="/dashboard" class="btn">Dashboard</a>
+        <a href="/logout" class="btn">Logout</a>
+    </div>
+</div>
+
+<div class="dashboard-container">
+
+    <div class="card">
+        <h3 style="margin-bottom:20px;">Stress Trend Over Time</h3>
+
+        <canvas id="chart" height="100"></canvas>
+
+        <button class="btn" style="margin-top:20px;" onclick="downloadPDF()">
+            Download Graph as PNG
+        </button>
+    </div>
+
+    <div class="card" style="margin-top:30px;">
+        <h3 style="margin-bottom:15px;">AI Trend Interpretation</h3>
+        <div id="trendInsight"></div>
+    </div>
+
+</div>
+
+<script>
+const records = JSON.parse('{{ records_json | safe }}');
+const labels = records.map(r => r.date);
+const data = records.map(r => r.stress_score);
+
+const ctx = document.getElementById("chart");
+
+const chart = new Chart(ctx, {
+    type: "line",
+    data: {
+        labels: labels,
+        datasets: [{
+            label: "Stress Score",
+            data: data,
+            borderWidth: 3,
+            tension: 0.4,
+            fill: true,
+            borderColor: "#00c6ff",
+            backgroundColor: "rgba(0,198,255,0.15)"
+        }]
+    },
+    options: {
+        responsive: true,
+        animation: { duration: 2000 },
+        scales: { y: { beginAtZero: true, max: 100 } }
+    }
+});
+
+/* Trend Analysis */
+const trendDiv = document.getElementById("trendInsight");
+
+if (data.length > 1) {
+    const last = data[data.length - 1];
+    const prev = data[data.length - 2];
+
+    if (last > prev) {
+        trendDiv.innerHTML = "⬆ Stress increasing. Improve sleep & balance.";
+    } else if (last < prev) {
+        trendDiv.innerHTML = "⬇ Stress decreasing. Lifestyle improving.";
+    } else {
+        trendDiv.innerHTML = "➖ Stress stable. Maintain routine.";
+    }
+} else {
+    trendDiv.innerHTML = "Not enough data for trend analysis.";
+}
+
+/* Download PDF (Graph Only) */
+function downloadPDF() {
+    const link = document.createElement('a');
+    link.download = 'stress_graph.png';
+    link.href = chart.toBase64Image();
+    link.click();
+}
+</script>
+
+</body>
+</html>

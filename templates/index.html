@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Stress Intelligence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>AI Stress Intelligence</h2>
+    <div>
+        <a href="/login" class="btn">Login</a>
+        <a href="/register" class="btn">Register</a>
+    </div>
+</div>
+
+<!-- HERO SECTION -->
+<section style="height:90vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:40px;">
+    <div>
+        <h1 style="font-size:60px; margin-bottom:20px;">
+            AI-Driven <span style="color:#00c6ff;">Mental Health Intelligence</span>
+        </h1>
+
+        <p style="font-size:22px; opacity:0.85; margin-bottom:40px;">
+            Predict • Analyze • Improve your stress levels
+            using Machine Learning powered analytics.
+        </p>
+
+        <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+            <a href="/register" class="btn" style="padding:15px 40px;">
+                Start Monitoring
+            </a>
+
+            <a href="/login" class="btn"
+               style="padding:15px 40px; background:linear-gradient(90deg,#ff512f,#dd2476);">
+                Login
+            </a>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

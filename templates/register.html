@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register | AI Stress Intelligence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body style="display:flex; justify-content:center; align-items:center; height:100vh;">
+
+<div class="card" style="width:420px; text-align:center;">
+
+    <h2 style="margin-bottom:10px;">Create Account 🚀</h2>
+    <p style="opacity:0.8; margin-bottom:30px;">
+        Start your AI-powered stress monitoring journey.
+    </p>
+
+    <form method="POST">
+
+        <input type="text"
+               name="username"
+               placeholder="Choose Username"
+               required>
+
+        <input type="password"
+               name="password"
+               placeholder="Create Password"
+               required>
+
+        <button class="btn" style="width:100%; margin-top:15px;">
+            Register
+        </button>
+
+    </form>
+
+    <p style="margin-top:20px; font-size:14px;">
+        Already have an account?
+        <a href="/login" style="color:#00c6ff;">Login</a>
+    </p>
+
+</div>
+
+</body>
+</html>

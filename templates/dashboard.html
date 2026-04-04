@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+
+<div class="navbar">
+    <h2>AI Stress Dashboard</h2>
+    <div>
+        <a href="/analytics" class="btn">Analytics</a>
+        <a href="/logout" class="btn">Logout</a>
+    </div>
+</div>
+
+<div class="dashboard-container">
+
+    <h2>Welcome {{ current_user.username }} 👋</h2>
+
+    <div class="dashboard-grid">
+
+        <div class="card">
+            <h3>Enter Lifestyle Data</h3>
+            <input id="study" type="number" placeholder="Study Hours">
+            <input id="sleep" type="number" placeholder="Sleep Hours">
+            <input id="activity" type="number" placeholder="Physical Activity">
+            <input id="social" type="number" placeholder="Social Hours">
+            <input id="gpa" type="number" placeholder="GPA">
+            <button class="btn" onclick="predictStress()">Predict Stress</button>
+        </div>
+
+        <div class="card">
+            <h3>AI Result</h3>
+            <div id="result-box">
+                <div class="progress-circle">
+                    <span>0</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="chatbot-btn" onclick="toggleChatbot()">🤖</div>
+
+<div class="chatbot-panel" id="chatbotPanel">
+    <div class="chatbot-messages" id="chatMessages"></div>
+    <div class="chatbot-input">
+        <input type="text" id="chatInput" placeholder="Ask AI...">
+        <button class="btn" onclick="sendChat()">Send</button>
+    </div>
+</div>
+
+</body>
+</html>
